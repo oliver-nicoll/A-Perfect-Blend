@@ -6,7 +6,6 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.integer :sold_at
       t.integer :instock
       t.string :image
-      t.string :vendor_name
       t.string :category
       t.integer :vendor_id
       

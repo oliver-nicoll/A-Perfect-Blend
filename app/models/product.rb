@@ -1,10 +1,12 @@
 class Product < ApplicationRecord
     before_destroy :not_referenced_by_any_cart_product
-
-    has_many :cart_products, through: :cart
-    has_many :customers, through: :cart_products
-    belongs_to :vendor, class_name: "User"
-    has_many :customers, through: :carts, class_name: "User"
+    
+    belongs_to :vendor, :class_name => "User", :foreign_key => "vendor_id"
+     
+    has_many :cart_products
+    has_many :carts, through: :cart_products
+    has_many :users, through: :carts
+   
 
     mount_uploader :image, ImageUploader
     serialize :image, JSON
@@ -30,6 +32,4 @@ class Product < ApplicationRecord
             throw :abort
         end
     end
-end
-
 end

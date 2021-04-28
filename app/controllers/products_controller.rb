@@ -45,7 +45,6 @@ class ProductsController < ApplicationController
             #flash message
             render :edit
         end
-
     end
     
     def add_to_cart
