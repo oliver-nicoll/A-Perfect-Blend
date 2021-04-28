@@ -47,12 +47,6 @@ class ProductsController < ApplicationController
         end
 
     end
-
-    def destroy
-        @product = Product.find_by(id: params[:id])
-        @product.destroy
-        redirect_to products_path
-    end 
     
     def add_to_cart
         id = params[:id].to_i
@@ -60,9 +54,15 @@ class ProductsController < ApplicationController
         redirect_to products_path
     end
 
+    def delete_cart_item
+        id = params[:id].to_i
+        session[:cart] << product_params
+        redirect_to products_path
+    end
+
     def vendor_products
         binding.pry
-        @product = Product.find_by()
+        @products = Product.find_by(vendor_id: params[:vendor_id])
     end
 
       private
