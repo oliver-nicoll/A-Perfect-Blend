@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sessions
   resources :cart_products
   resources :statics
   resources :products
