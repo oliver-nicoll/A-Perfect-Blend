@@ -1,0 +1,11 @@
+<h1> Show Cart </h1>
+<details class= "shopping-cart">
+        <summary> Shopping Cart </summary>
+          <ul>
+            <% @cart.each do |p| %>
+              <li>
+               <%= p.product_name %> - <%= number_to_currancy.p.sold_at %>
+              </li>
+              <% end %>
+          </ul>
+    </details>
