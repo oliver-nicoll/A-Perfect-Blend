@@ -5,7 +5,7 @@ class Cart < ApplicationRecord
     has_many :products, through: :cart_products
     
 
-    validates :checkout, inclusion: [true, false]
+    validates :completed, inclusion: [true, false]
     validates :user_id, numericality: { only_integer: true }
 
     def add_product(product)

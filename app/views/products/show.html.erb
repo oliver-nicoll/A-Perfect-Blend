@@ -1,6 +1,7 @@
 <h1><%= @product.product_name %></h1>
 <div>
    <%= image_tag(@product.image) %>
+   <%= form.file_field :images, multiple: true %>
     <p>About the product: <%= @product.product_description %></p><br>
     <p>Price: $ <%= @product.sold_at %></p>
     Quantity Available: <%= @product.instock %>

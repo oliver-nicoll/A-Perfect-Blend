@@ -12,7 +12,7 @@ class Product < ApplicationRecord
     serialize :image, JSON
 
     validates :product_name, presence: true, uniqueness: {scope: :image, message: 'and Image Url are not UNIQUE'}
-    validates :product_description, :vendor_name, :instock, presence: true 
+    validates :product_description, :instock, presence: true 
     validates :sold_at, numericality: { only_integer: true, greater_than_or_equal_to: 0}
     
     
