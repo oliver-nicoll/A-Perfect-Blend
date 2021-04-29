@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   
       def profile
-        redirect_if_not_logged_in_as_vendor_or_admin
         @user = User.find_by(id: params[:id])
       end
 
@@ -10,11 +9,15 @@ class UsersController < ApplicationController
       end
     
       def create
+        
         @user = User.new(user_params)
+      
+        @user.role = params[:user][:role].to_i
+        
         if @user.save
           flash[:message] = "Successfully signed up."
           session[:user_id] = @user.id
-          redirect_to products_path
+          redirect_to root_path
         else
           render :new
         end
@@ -47,6 +50,6 @@ class UsersController < ApplicationController
       private
   
       def user_params
-        params.require(:user).permit(:role, :vendor, :name, :username, :password, :email, :business_name)
+        params.require(:user).permit(:name, :username, :password, :password_confirmation, :email, :business_name)
       end
 end

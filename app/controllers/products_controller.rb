@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
     def index
 
-        if current_user && current_user.vendor
+        if current_user && current_user.vendor?
             @products = current_user.products
         else
             @products = Product.all

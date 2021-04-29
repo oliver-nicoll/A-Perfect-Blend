@@ -7,7 +7,7 @@
     <div class="row small-up-2 large-up-4">
       <div class="column">
         <% @products.each do |p| %>
-                <%= image_tag(p.image, class: "thumbnail") %>
+                <%= image_tag(p.image || "https://placehold.it/300x400", class: "thumbnail") %>
                 <h5><%= link_to(p.product_name, product_path(p)) %></h5>
                 <p>Price: <%= number_to_currency(p.sold_at)   %></p>
             <%= button_to 'Buy', add_to_cart_path(p), method: :post, class: 'button expanded' %>

@@ -8,6 +8,6 @@ module ApplicationHelper
     end
 
     def vendor_user_or_admin?
-        current_user && current_user.vendor? 
+        current_user && current_user.vendor? || current_user.admin?
     end
 end

@@ -18,17 +18,17 @@ Rails.application.routes.draw do
   
   get '/search', to: 'products#search', as: 'search'
 
+  resources :carts
+  
+  resources :cart_products
+  
+  resources :products
+
   resources :products, only: [:index] do 
     get '/products/my-products', to: 'products#vendor_products'
   end
 
   post '/products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
   delete '/products/delete_cart_item/:id', to: 'products#delete_cart_item', as: 'delete_cart_item'
- 
-  resources :carts
-  # resources :users
-  
-  resources :cart_products
-  
-  resources :products
+
 end
