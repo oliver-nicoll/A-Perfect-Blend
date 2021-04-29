@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     
-    has_many :products, foreign_key: :vendor_id
+    has_many :products, foreign_key: :vendor_id, dependent: :destroy
     has_many :carts
     has_many :order_products, through: :carts, source: :products
    

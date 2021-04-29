@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2021_04_28_015232) do
 
   create_table "users", force: :cascade do |t|
     t.integer "role"
-    t.boolean "vendor"
     t.string "name"
     t.string "username"
     t.string "email"
@@ -57,6 +56,8 @@ ActiveRecord::Schema.define(version: 2021_04_28_015232) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "cart_products", "carts"
-  add_foreign_key "cart_products", "products"
+  add_foreign_key "cart_products", "carts", on_delete: :cascade
+  add_foreign_key "cart_products", "products", on_delete: :cascade
+  add_foreign_key "cart_products", "users", on_delete: :cascade
+  add_foreign_key "carts", "users", on_delete: :cascade
 end

@@ -7,7 +7,7 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.integer :instock
       t.string :image
       t.string :category
-      t.integer :vendor_id
+      t.integer :vendor_id, foreign_key: {on_delete: :cascade}
       
       t.timestamps
     end

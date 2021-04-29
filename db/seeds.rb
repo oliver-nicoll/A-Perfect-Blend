@@ -9,12 +9,12 @@ Product.create(product_name: 'Orangeade', product_description: "Fresh made orang
 
 
 #vendor
-User.create(role: 1, vendor: true, username: "KeinerHA", name: "Harold Keiner", email: "keinerapiary@gmail.com", password: "password")
-User.create(role: 1, vendor: true, username: "coliver", name: "Christine Oliver", email: "test@btbm.com", password: "password")
+User.create(role: 1,  username: "KeinerHA", name: "Harold Keiner", email: "keinerapiary@gmail.com", password: "password")
+User.create(role: 1,  username: "coliver", name: "Christine Oliver", email: "test@btbm.com", password: "password")
 
 #shopper
-User.create(role: 0, vendor: false, username: "shopper", name: "Cathy Not Vendor", email: "test@test.com", password: "password")
-User.create(role: 0, vendor: false, username: "test", name: "Delores Not Vendore", email: "test@t.com", password: "password" )
+User.create(role: 0, username: "shopper", name: "Cathy Not Vendor", email: "test@test.com", password: "password")
+User.create(role: 0, username: "test", name: "Delores Not Vendore", email: "test@t.com", password: "password" )
 #admin
 User.create(role: 2, username: "nicolldon", name: "Nicoll Oliver", email: "btbm@aperfectblend.com", password: "password" )
 

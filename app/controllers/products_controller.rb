@@ -25,10 +25,9 @@ class ProductsController < ApplicationController
     def create
         redirect_if_not_logged_in_as_vendor_or_admin
 
-        @product = Product.new(product_params)
+        @product = current_user.products.build(product_params)
 
-        set_vendor_id_to_new_product
-        
+
         if @product.save
             redirect_to products_path(@product)
         else
@@ -55,6 +54,15 @@ class ProductsController < ApplicationController
             render :edit
         end
     end
+
+    def destroy
+        redirect_if_not_logged_in_as_vendor_or_admin
+
+        @product = Product.find_by(id: params[:id])
+        # binding.pry
+        @product.destroy
+        redirect_to products_path
+    end
     
     def add_to_cart
         id = params[:id].to_i
@@ -78,7 +86,6 @@ class ProductsController < ApplicationController
             :instock,
             :image,
             :category,
-            :vendor_id
           )
         end
 end

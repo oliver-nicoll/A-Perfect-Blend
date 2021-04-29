@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-    before_destroy :not_referenced_by_any_cart_product
+    # before_destroy :not_referenced_by_any_cart_product
     
     belongs_to :vendor, :class_name => "User", :foreign_key => "vendor_id"
      

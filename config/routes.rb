@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/about_us', to: 'static#about_us'
   get '/profile', to: 'users#profile'
   get '/profile/:id/edit', to: 'users#edit', as: 'profile_edit'
-  patch '/profile/:id/edit', to: 'users#update'
+  patch '/profile/:id', to: 'users#update', as: 'profile_update'
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create', as: 'post_signup'
@@ -18,16 +18,14 @@ Rails.application.routes.draw do
   
   get '/search', to: 'products#search', as: 'search'
 
+  resources :products
+  
+  resources :users, only: [:index] do 
+    get '/my-products', to: 'products#index'
+  end
   resources :carts
   
   resources :cart_products
-  
-  resources :products
-
-  resources :products, only: [:index] do 
-    get '/products/my-products', to: 'products#vendor_products'
-  end
-
   post '/products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
   delete '/products/delete_cart_item/:id', to: 'products#delete_cart_item', as: 'delete_cart_item'
 
