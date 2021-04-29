@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
       def profile
-        render 'edit'
-      end
-  
-      def vendor
+        render :edit
       end
   
       def new
@@ -29,6 +26,6 @@ class UsersController < ApplicationController
       private
   
       def user_params
-        params.require(:user).permit(:vendor, :name, :username, :password, :email)
+        params.require(:user).permit(:role, :vendor, :name, :username, :password, :email)
       end
 end

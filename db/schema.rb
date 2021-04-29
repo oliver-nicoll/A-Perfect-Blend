@@ -13,15 +13,15 @@
 ActiveRecord::Schema.define(version: 2021_04_28_015232) do
 
   create_table "cart_products", force: :cascade do |t|
-    t.integer "vendor_id", null: false
+    t.integer "user_id"
     t.integer "product_id", null: false
-    t.integer "cart_id"
+    t.integer "cart_id", null: false
     t.integer "quantity", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_cart_products_on_cart_id"
     t.index ["product_id"], name: "index_cart_products_on_product_id"
-    t.index ["vendor_id"], name: "index_cart_products_on_vendor_id"
+    t.index ["user_id"], name: "index_cart_products_on_user_id"
   end
 
   create_table "carts", force: :cascade do |t|
@@ -47,16 +47,16 @@ ActiveRecord::Schema.define(version: 2021_04_28_015232) do
   create_table "users", force: :cascade do |t|
     t.integer "role"
     t.boolean "vendor"
-    t.integer "vendor_id"
     t.string "name"
     t.string "username"
     t.string "email"
     t.string "password_digest"
     t.string "uid"
+    t.string "business_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
-  add_foreign_key "cart_products", "users", column: "vendor_id"
 end

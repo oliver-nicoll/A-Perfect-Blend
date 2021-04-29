@@ -1,6 +1,5 @@
 <%= form_with(model: @product) do |f| %>
-    <%= f.label :vendor_name %>
-    <%= f.text_field :vendor_name %><br>
+   
     <%= f.label :image %>
     <%= f.text_field :image %><br>
     <%= f.label :category %>
@@ -13,5 +12,5 @@
     <%= f.number_field :instock, in: 1.0..200.0, step: 1.0 %><br>
     <%= f.label :sold_at %>
     <%= f.number_field :sold_at, in: 1.0..200.0, step: 0.01 %><br>
-    <%= button_to 'Update Product', edit_product_path(@product), , method: :post %>
+    <%= f.submit 'Update Product' %>
 <% end %>

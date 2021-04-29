@@ -41,7 +41,7 @@ class CartsController < ApplicationController
 
     private 
     def cart_params
-        params.require(:cart).permit(:user_id, :checkout)
+        params.require(:cart).permit(:user_id, :completed)
     end
 
     def invalid_cart
