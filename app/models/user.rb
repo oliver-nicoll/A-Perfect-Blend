@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
+    
     has_many :products, foreign_key: :vendor_id
     has_many :carts
     has_many :order_products, through: :carts, source: :products
@@ -13,4 +14,7 @@ class User < ApplicationRecord
     validates :name, length: { minimum: 2 }
     validates :password, length: { in: 6..20 }
     validates :vendor, inclusion: [true, false]
+    validates :role, presence: true
+
+    
 end

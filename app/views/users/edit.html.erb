@@ -1,31 +1,21 @@
-<%= form_with(model: @user, url: post_signup_path) do |f| %> 
-      
-      <%= f.text_field :name %>
-      <%= f.label :name  %>
-      <br>
-    
-      <%= f.text_field :username %>
+<%= form_with(model: @user, url: profile_edit_path) do |f| %> 
+      <%= f.label :name %>
+      <%= f.text_field :name %><br>
+
+      <%= f.label :business_name %>
+      <%= f.text_field :business_name %><br>
+
       <%= f.label :username %>
-      <br>
+      <%= f.text_field :username %><br>
   
-    
-    
-      <%= f.email_field :email %>
-      <%= f.label :email  %><br>
-    
+      <%= f.label :email  %>
+      <%= f.email_field :email %><br>
   
-    
-    <%= fields_for :vendor do |permission_fields| %>
-      Check box if you are a Vendor: <%= permission_fields.check_box :vendor %>
-    <% end %><br>
-  
-    
-      <%= f.password_field :password %>
-      <%= f.label :password %><br>
-  
-    
+      <%= f.label :password %>
+      <%= f.password_field :password %><br>
       <br/>
-      <%= f.submit "Sign Up" %>
-    </div>
+      <%= f.submit "Update Profile" %>
+  </div>
   
 <% end %>
+ 

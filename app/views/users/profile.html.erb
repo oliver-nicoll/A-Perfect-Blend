@@ -1,6 +1,8 @@
+<h1><%= current_user.name %>'s Profile</h1>
 <div>
-    <p><strong>Username:</strong> <%= @user.username %></p>
-    <p><strong>Name:</strong> <%= @user.name %></p>
-    <p><strong>email:</strong>  <%= @user.email %></p>
-    <p><%= button_to 'Edit', root_path %></p>
+    <p>Business: <%= current_user.business_name %></p>
+    <p>Username: <%= current_user.username %></p><br>
+    <p>Email:  <%= current_user.email %></p>
 </div>
+
+<%= link_to 'Edit Profile', profile_edit_path(current_user) %>

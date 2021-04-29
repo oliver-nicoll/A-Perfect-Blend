@@ -18,7 +18,7 @@
   
       <font face = "Verdana" size = "4">
                <%= render(partial: "layouts/navbar", locals: { logo_name: "2"}) %>
-      
+              <%= flash[:notice]%>
                <%= flash[:message]%>
     <%= yield %>
 

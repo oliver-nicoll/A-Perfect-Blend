@@ -8,18 +8,15 @@
       <%= f.label :username %>
       <br>
   
-    
-    
       <%= f.email_field :email %>
       <%= f.label :email  %><br>
-    
-  
     
     <%= fields_for :vendor do |permission_fields| %>
       Check box if you are a Vendor: <%= permission_fields.check_box :vendor %>
     <% end %><br>
-  
-    
+
+     <%= f.select :role, options_for_select(User.roles.map {|key, value| [key.titleize, User.role.key(value)]}, @user.role)
+     
       <%= f.password_field :password %>
       <%= f.label :password %><br>
   

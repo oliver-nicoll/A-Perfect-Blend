@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/menu', to: 'static#menu'
   get '/about_us', to: 'static#about_us'
   get '/profile', to: 'users#profile'
+  get '/profile/:id/edit', to: 'users#edit', as: 'profile_edit'
+  patch '/profile/:id/edit', to: 'users#update'
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create', as: 'post_signup'
@@ -24,6 +26,7 @@ Rails.application.routes.draw do
   delete '/products/delete_cart_item/:id', to: 'products#delete_cart_item', as: 'delete_cart_item'
  
   resources :carts
+  # resources :users
   
   resources :cart_products
   

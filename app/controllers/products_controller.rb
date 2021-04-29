@@ -24,8 +24,11 @@ class ProductsController < ApplicationController
     
     def create
         redirect_if_not_logged_in_as_vendor_or_admin
+
         @product = Product.new(product_params)
 
+        set_vendor_id_to_new_product
+        
         if @product.save
             redirect_to products_path(@product)
         else

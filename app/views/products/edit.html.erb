@@ -11,6 +11,6 @@
     <%= f.label :instock %>
     <%= f.number_field :instock, in: 1.0..200.0, step: 1.0 %><br>
     <%= f.label :sold_at %>
-    <%= f.number_field :sold_at, in: 1.0..200.0, step: 0.01 %><br>
+    <%= f.number_field :sold_at, in: 1.0..400.0, step: 0.25 %><br>
     <%= f.submit 'Update Product' %>
 <% end %>

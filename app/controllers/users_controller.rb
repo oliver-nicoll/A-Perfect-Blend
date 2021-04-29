@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-      def profile
-        render :edit
-      end
   
+      def profile
+        redirect_if_not_logged_in_as_vendor_or_admin
+        @user = User.find_by(id: params[:id])
+      end
+
       def new
         @user = User.new
       end
@@ -17,6 +19,25 @@ class UsersController < ApplicationController
           render :new
         end
       end
+      
+      def edit
+        redirect_if_not_logged_in_as_vendor_or_admin
+        @user = User.find_by(id: params[:id])
+      end
+
+      def update
+        redirect_if_not_logged_in_as_vendor_or_admin
+
+        @user = User.find_by(id: params[:id])
+        @user.update(user_params)
+        
+        if @user.valid?
+            redirect_to profile_path(@user)
+        else 
+            flash[:message] = "User not valid"
+            render :edit
+        end
+      end
     
       def destroy
         session.delete("user_id")
@@ -26,6 +47,6 @@ class UsersController < ApplicationController
       private
   
       def user_params
-        params.require(:user).permit(:role, :vendor, :name, :username, :password, :email)
+        params.require(:user).permit(:role, :vendor, :name, :username, :password, :email, :business_name)
       end
 end
