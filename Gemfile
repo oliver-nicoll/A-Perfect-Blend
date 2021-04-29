@@ -72,3 +72,5 @@ gem "mini_magick", "~> 4.11"
 gem "bulma-rails", "~> 0.9.1"
 
 gem "gravatar_image_tag", "~> 1.2"
+
+gem "omniauth", "~> 2.0"
