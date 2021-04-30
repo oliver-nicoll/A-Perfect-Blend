@@ -25,10 +25,19 @@
     font-style: italic;
 }
 
- /* .bg-main {
-    background-image: url("A-Perfect-Blend/Welcome.png");
+ .bg-main {
+    background-image: url("apb-coffee/Welcome.png");
     height: 100vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
-} */
+}
+
+body {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
