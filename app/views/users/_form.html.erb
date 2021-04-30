@@ -1,31 +1,28 @@
 <%= form_with(model: @user, url: post_signup_path) do |f| %> 
       
       <%= f.text_field :name %>
-      <%= f.label :name  %>
+      <p><%= f.label :name  %></p>
       <br>
     
       <%= f.text_field :username %>
-      <%= f.label :username %>
+      <p><%= f.label :username %></p>
       <br>
   
       <%= f.email_field :email %>
-      <%= f.label :email  %><br>
+      <p><%= f.label :email  %><br></p>
 
-       <%= fields_for :vendor do |permission_fields| %>
-      Check box if you are a Vendor: <%= permission_fields.check_box :vendor %>
-    <% end %><br>
 
       <%= f.select :role, options_for_select(User.roles.map {|k,v| [k.humanize, v]}) %>
-      <%= f.label :role  %><br><br>
+     <p> <%= f.label :role  %></p><br><br>
 
       <%= f.password_field :password %>
-      <%= f.label :password %><br>
+      <p><%= f.label :password %></p><br>
 
       
       <%=f.password_field :password_confirmation%>
-      <%=f.label :password_confirmation %><br>
+      <p><%=f.label :password_confirmation %></p><br>
         <br/>
-      <%= f.submit "Sign Up" %>
+      <p><%= f.submit "Sign Up", class: "btn btn-outline-light"%></p>
     </div>
   
 <% end %>

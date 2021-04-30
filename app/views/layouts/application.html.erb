@@ -17,6 +17,7 @@
  <body class="bg-main">
   
       <font face = "Verdana" size = "4">
+        <div class="static">
                <%= render(partial: "layouts/navbar") %>
               <%= flash[:notice]%>
                <%= flash[:message]%>
@@ -28,6 +29,6 @@
               <script>
                 $(document).foundation();
               </script>
-
+      </div>
   </body>
 </html>

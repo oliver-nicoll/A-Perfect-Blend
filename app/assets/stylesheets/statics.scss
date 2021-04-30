@@ -2,18 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.bg-main {
-    background-image: url("apb-coffee/main.png");
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-}
+
 
 p {
     color: white;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-right: 200px;
+    margin-left: 200px;
+    text-align: center;
+
+}
+
+h1 {
+    color: white;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    margin-right: 150px;
+    margin-left: 80px;
+    text-align: center;
+}
+
+h4 {
+    color: white;
+    margin-top: 25px;
+    margin-bottom: 0px;
     margin-right: 150px;
     margin-left: 80px;
     text-align: center;
