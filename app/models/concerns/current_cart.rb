@@ -1,5 +1,14 @@
 module CurrentCart
 
+    def current_order_cart
+        if Cart.find_by_id(session[:cart_id]).nil?
+            Cart.new
+          else
+            Cart.find_by_id(session[:cart_id])
+          end
+
+    end
+
     private
 
     def set_cart

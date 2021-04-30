@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_182407) do
+ActiveRecord::Schema.define(version: 2021_04_30_135958) do
 
   create_table "cart_products", force: :cascade do |t|
     t.integer "user_id"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_04_29_182407) do
     t.boolean "completed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "total"
+    t.decimal "subtotal"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 

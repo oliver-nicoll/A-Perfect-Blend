@@ -4,11 +4,12 @@ class CartsController < ApplicationController
     
     
     def index
+        @all_products = current_user.products
         @cart = Cart.all
     end
 
     def show
-        # @cart = Cart.find(params[:id])
+        
     end
 
     
@@ -44,14 +45,15 @@ class CartsController < ApplicationController
     end
 
     def destroy
-        @cart.destroy if @cart.id === session[:cart_id]
-        session[:cart_id] = nil
+        @cart = current_user.cart
+        
+        @cart.destroy
 
         redirect_to root_path
     end
 
     def checkout
-
+        
     end
 
     private 

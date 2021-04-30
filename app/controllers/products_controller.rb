@@ -59,22 +59,13 @@ class ProductsController < ApplicationController
         redirect_if_not_logged_in_as_vendor_or_admin
 
         @product = Product.find_by(id: params[:id])
-        # binding.pry
+        
         @product.destroy
+        
         redirect_to products_path
     end
     
-    def add_to_cart
-        id = params[:id].to_i
-        session[:cart] << product_params
-        redirect_to products_path
-    end
-
-    def delete_cart_item
-        id = params[:id].to_i
-        session[:cart].destroy 
-        redirect_to products_path
-    end
+  
 
       private
 

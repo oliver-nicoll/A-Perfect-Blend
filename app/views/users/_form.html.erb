@@ -11,9 +11,8 @@
       <%= f.email_field :email %>
       <p><%= f.label :email  %><br></p>
 
-
       <%= f.select :role, options_for_select(User.roles.map {|k,v| [k.humanize, v]}) %>
-     <p> <%= f.label :role  %></p><br><br>
+      <p> <%= f.label :role  %></p><br><br>
 
       <%= f.password_field :password %>
       <p><%= f.label :password %></p><br>

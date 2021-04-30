@@ -10,7 +10,7 @@
                 <%= image_tag(p.image || "https://placehold.it/300x400", class: "thumbnail") %>
                 <h5><%= link_to(p.product_name, product_path(p)) %></h5>
                 <p>Price: <%= number_to_currency(p.sold_at)   %></p>
-                <%= button_to 'Buy', cart_products_path, class: 'button expanded' %>
+                <%= button_to 'Add to Cart', product_add_to_cart_path(p), class: 'button expanded' %>
         <% end %>
        
       </div>

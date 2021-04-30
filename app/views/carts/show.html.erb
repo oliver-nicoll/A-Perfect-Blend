@@ -5,13 +5,13 @@
             <%= link_to 'Keep Shopping', products_path, class: 'shoping cart button' %>
             </div>
             <section>
-              <%= render(@cart.cart_products) %>
+              <%= render(partial: "cart_products/cart_products", locals: { cart: @cart } ) %>
             <div class: 'columns'>
               <div class: 'column'>
                   <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are you sure?'} %>
               </div>
           <h4>
-           <span>Total:</span> <%= number_to_currency(@cart.total_price) %>
+           <span>Total:</span> <%= number_to_currency(@cart.subtotal_cart) %>
            </h4>
           </section>
   </details>

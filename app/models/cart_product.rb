@@ -9,7 +9,7 @@ class CartProduct < ApplicationRecord
     validates :cart_id, numericality: { only_integer: true }
     validates :quantity, numericality: { only_integer: true }
 
-    def cart_total
-        product.sold_at.to_i * quantity.to_i
-    end
+    # def cart_total move to cart
+    #     product.sold_at.to_i * quantity.to_i
+    # end
 end

@@ -20,10 +20,15 @@ class CartProductsController < ApplicationController
     end
 
     def create
-        product = Product.find(params[:product_id])
-
-        @cart_product = @cart.add_product(product)
-
+        product = Product.find_by(params[:product_id])
+        binding.pry
+        @cart = current_user.cart
+        binding.pry
+            if @cart.nil?
+                @cart = current_user.build_cart
+            end
+            @cart_product = @cart.add_product(product)
+            binding.pry
         if  @cart_product.save
             redirect_to products_path(@cart_product)
         else
@@ -33,7 +38,8 @@ class CartProductsController < ApplicationController
     end
 
     def update
-        @cart_product = CartProduct.find_by(id: params[:id])
+        # @cart_product = CartProduct.find_by(id: params[:id])
+        @cart_product = @cart.cart_products.find(params[:id])
         @cart_product.update(cart_product_params)
             if @cart_product.valid?
                 redirect_to cart_product_path
@@ -44,12 +50,31 @@ class CartProductsController < ApplicationController
     end
 
    def destroy
-        @cart = Cart.find(session[:cart_id])
+        @cart = current_user.cart
 
+        @cart_product = @cart.cart_products.find(params[:id])
+        
         @cart_product.destroy
 
         redirect_to root_path
    end
+
+   def add_to_cart
+
+    @product = Product.find_by(id: params[:product_id])
+        cart = current_user.cart || current_user.create_cart
+        
+        cart.add_product(@product)
+    
+    redirect_to products_path
+end
+
+# def delete_cart_item
+#     @product = Product.find_by(id: params[:product_id])
+#     cart = current_user.cart(@product)
+        
+#     cart.cart_product.destroy
+# end
     
     private
 

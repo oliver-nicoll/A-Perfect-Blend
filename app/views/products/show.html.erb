@@ -6,7 +6,8 @@
     <p>Price: $ <%= @product.sold_at %></p>
     Quantity Available: <%= @product.instock %>
 </div>
-
 <%= link_to 'Back', products_path(@products) %>
-<%= link_to 'Edit Product', edit_product_path(@product) %>
-<%= link_to 'Delete Product', product_path(@product), method: 'delete' %>
+    <% if vendor_user_or_admin?  %>
+        <%= link_to 'Edit Product', edit_product_path(@product) %>
+        <%= link_to 'Delete Product', product_path(@product), method: 'delete' %>
+    <% end %>
