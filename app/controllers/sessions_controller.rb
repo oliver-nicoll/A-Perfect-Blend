@@ -30,14 +30,15 @@ class SessionsController < ApplicationController
               u.uid = auth[:uid]
               u.provider = auth[:provider]
               u.password = SecureRandom.hex(10)
+              u.role
           end
-          
+        #  binding.pry
           if @user.valid?
               flash[:messsage] = "Signed in with Google"
               session[:user_id] = @user.id
-              redirect_to images_path
+              redirect_to root_path
           else
-              flash[:message] = "Try Again"
+              flash[:message] = "Try Again - Not Valid"
               redirect_to login_path
           end
       end

@@ -1,0 +1,10 @@
+        <div>
+          <ul>
+            <li>Quantity: <%= cart_product.quantity</li>
+              <figure><%= image_tag(cart_product.product.image)%></figure>
+            <li><%= cart_product.product.product_name %> - <%= cart_product.product.sold_at</li>
+            Total: <%= number_to_currency(cart_product.total_price) %>
+          </ul>
+        </div>
+
+          <div><%= link_to 'Remove Item', cart_product, method: :delete, data: { confirm: "Are you sure? " }</div>

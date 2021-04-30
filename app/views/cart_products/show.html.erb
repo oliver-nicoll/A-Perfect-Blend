@@ -1,0 +1,13 @@
+    <div class: 'show cartp'>
+        <p>
+            <strong>Product:</strong>
+            <%= @cart_product.product %>
+        </p>
+
+        <p>
+            <strong>Cart:</strong>
+            <%= @cart_product.cart %>
+        </p>
+
+        <%= link_to 'Edit', edit_cart_product_path(@cart_product) %> |
+        <%= link_to 'Back', cart_products_path %>

@@ -1,6 +1,17 @@
 class CartsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
     before_action :set_cart, only: [:show, :edit, :update, :destroy]
+    
+    
+    def index
+        @cart = Cart.all
+    end
+
+    def show
+        # @cart = Cart.find(params[:id])
+    end
+
+    
     def new
         @cart = Cart.new
     end
@@ -16,16 +27,20 @@ class CartsController < ApplicationController
         end
     end
 
-    def index
-        @cart = Cart.all
-    end
-
-    def show
-        @cart = Cart.find(params[:id])
-    end
-
     def edit 
 
+    end
+
+    def update
+        @cart = Cart.find_by(id: params[:id])
+        @cart.update(cart_params)
+
+            if @cart.valid?
+                redirect_to cart_path
+            else
+                flash[:message] = "Try Again!"
+                render :edit
+            end
     end
 
     def destroy

@@ -1,0 +1,5 @@
+<%= form_with(model: @cart_product) do |f| %> 
+      <%= f.association :product %>
+      <%= f.association :cart %>
+      <%= f.button :submit %>
+<% end %>

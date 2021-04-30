@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_015232) do
+ActiveRecord::Schema.define(version: 2021_04_29_182407) do
 
   create_table "cart_products", force: :cascade do |t|
     t.integer "user_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_015232) do
     t.string "business_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
   end
 
   add_foreign_key "cart_products", "carts", on_delete: :cascade
