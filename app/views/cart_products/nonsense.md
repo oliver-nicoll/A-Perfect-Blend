@@ -6,3 +6,15 @@
             <li> Total: <%= number_to_currency(cart_product.subtotal_cart) %> </li>
           </ul>
         </div>
+
+
+
+index - carts
+
+        <div class: 'columns'>
+              <div class: 'column'>
+                  <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are you sure?'} %>
+              </div>
+          <h4>
+           <span>Total:</span> <%= number_to_currency(@cart.subtotal_cart) %>
+           </h4>

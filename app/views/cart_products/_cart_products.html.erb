@@ -1,5 +1,7 @@
-   <% @all_products.each do |p| %>
-        <%= p.product_name %>
-        <% end %>
+   <% cart.each do |cp| %>
+      <pre> Item: <%= cp.product.product_name %>    |       Price: $<%= cp.product.sold_at %> - <%= cp.quantity %><br><br> </pre>
+
+        
+   <% end %>
 
          

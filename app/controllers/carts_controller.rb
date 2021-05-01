@@ -4,8 +4,7 @@ class CartsController < ApplicationController
     
     
     def index
-        @all_products = current_user.products
-        @cart = Cart.all
+        @cart = current_user.cart.cart_products.all
     end
 
     def show
@@ -22,6 +21,7 @@ class CartsController < ApplicationController
         @cart = Cart.new(cart_params)
 
         if @cart.save 
+            current_user.id = user_id
             redirect_to cart_path(@cart)
         else
             render :new

@@ -8,7 +8,7 @@ module CurrentCart
           end
 
     end
-
+  
     private
 
     def set_cart

@@ -4,7 +4,7 @@ class CartProductsController < ApplicationController
     before_action :set_cart, only: [:create]
 
     def index 
-        @cart_products = CartProduct.all
+        @cart_products = current_user
     end
 
     def show
@@ -21,15 +21,13 @@ class CartProductsController < ApplicationController
 
     def create
         product = Product.find_by(params[:product_id])
-        binding.pry
         @cart = current_user.cart
-        binding.pry
             if @cart.nil?
                 @cart = current_user.build_cart
             end
             @cart_product = @cart.add_product(product)
-            binding.pry
         if  @cart_product.save
+            binding.pry
             redirect_to products_path(@cart_product)
         else
             flash[:message] = "Try Again!"
@@ -50,9 +48,9 @@ class CartProductsController < ApplicationController
     end
 
    def destroy
-        @cart = current_user.cart
+        # @cart = current_user.cart
 
-        @cart_product = @cart.cart_products.find(params[:id])
+        # @cart_product = @cart.cart_products.find(params[:id])
         
         @cart_product.destroy
 
