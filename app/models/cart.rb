@@ -13,6 +13,7 @@ class Cart < ApplicationRecord
         current_item = cart_products.find_by(product_id: product.id)
 
         if current_item
+            binding.pry
             current_item.increment(:quantity, 1)
         else
             current_item = self.cart_products.build(product_id: product.id)
@@ -30,6 +31,12 @@ class Cart < ApplicationRecord
         
         save 
         self
+    end
+
+     def cart_total
+
+     binding.pry
+        product.sold_at.to_i * quantity.to_i
     end
 
 

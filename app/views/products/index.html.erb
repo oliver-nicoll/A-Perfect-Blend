@@ -4,20 +4,16 @@
       <hr>
   </div>
 
-    <div class="row small-up-2 large-up-4">
-      <div class="column">
-        <% @products.each do |p| %>
-                <%= image_tag(p.image || "https://placehold.it/300x400", class: "thumbnail") %>
-                <h5><%= link_to(p.product_name, product_path(p)) %></h5>
-                <p>Price: <%= number_to_currency(p.sold_at)   %></p>
-                <%= button_to 'Add to Cart', product_add_to_cart_path(p), class: 'button expanded' %>
-        <% end %>
-       
-      </div>
-      <div class="column">
-        <img class="thumbnail" src="https://placehold.it/300x400">
-        <h5>Nulla At Nulla Justo, Eget</h5>
-        <p>$400</p>
-        <a href="#" class="button expanded">Buy</a>
-      </div>
-    </div>
+  <div class="card" style="width: 18rem;">
+  <% @products.each do |p| %>
+  <%= image_tag(p.image || "https://placehold.it/300x400", class: "thumbnail") %>
+  <div class="card-body">
+    <h5><%= link_to(p.product_name, product_path(p), class: "card-title") %></h5>
+    <p class="card-text">Price: <%= number_to_currency(p.sold_at)   %></p>
+    <%= button_to 'Add to Cart', product_add_to_cart_path(p), class: "btn btn-primary" %>
+   <% end %>
+  </div>
+</div>
+    
+   
+    
