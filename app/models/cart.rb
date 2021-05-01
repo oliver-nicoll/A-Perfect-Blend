@@ -10,13 +10,12 @@ class Cart < ApplicationRecord
 
     def add_product(product)
 
-        current_item = cart_products.find_by(product_id: product.id)
-
+        current_item = cart_products.find_by(product_id: product.id, user_id: current_user.id)
+        
         if current_item
-            binding.pry
             current_item.increment(:quantity, 1)
         else
-            current_item = self.cart_products.build(product_id: product.id)
+            current_item = self.cart_products.build(product_id: product.id, user_id: current_user.id)
         end
         
         save 
