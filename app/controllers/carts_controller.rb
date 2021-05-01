@@ -4,7 +4,9 @@ class CartsController < ApplicationController
     
     
     def index
-        @cart = current_user.cart.cart_products.all
+    
+        @cart = current_user.cart.cart_products.all 
+        
     end
 
     def show

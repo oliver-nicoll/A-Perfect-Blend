@@ -14,14 +14,6 @@
  *= require_self
  */
 
-.bg-main {
-  background-image: url("website/main.png");
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  }
-
  .field_with_errors {
     padding: 2px;
     background-color: red;
@@ -32,3 +24,11 @@
     background-color: beige;
     font-style: italic;
 }
+
+.bg-main {
+  background-image: url("apb-coffee/main.png");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  }

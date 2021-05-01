@@ -3,23 +3,18 @@ class Product < ApplicationRecord
     
     belongs_to :vendor, :class_name => "User", :foreign_key => "vendor_id"
      
-    has_many :cart_products
-    has_many :carts, through: :cart_products
+    has_many :cart_products, through: :users
+    has_many :carts, through: :cart_products, source: :user
     has_many :users, through: :carts
    
 
-    # mount_uploader :image, ImageUploader
-    # serialize :image, JSON
+
 
     validates :product_name, presence: true, uniqueness: {scope: :image, message: 'and Image Url are not UNIQUE'}
     validates :product_description, :instock, presence: true 
     validates :sold_at, numericality: { only_integer: true, greater_than_or_equal_to: 0}
     
     
-    # has_one_attached :image do |attachable|
-    #     attachable.variant :thumb, resize: "100x100"
-    # end
-
 
     scope :search, -> (query) { self.where("product_name LIKE ?", "%#{query}%") }
     

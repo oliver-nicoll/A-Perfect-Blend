@@ -5,21 +5,22 @@
  </div> 
  
  <div class="container">
-  <div class="row">
-      <div class="col-sm">
-        <div class="card" style="width: 18rem;">
+  <center><div class="row">
         <% @products.each do |p| %>
+      <div class="col-sm">
+        <div class="card" style="width: 24rem;">
         <%= image_tag(p.image || "https://placehold.it/300x400", class: "thumbnail") %>
         <div class="card-body">
           <h5><%= link_to(p.product_name, product_path(p), class: "card-title") %></h5>
           <p class="card-text">Price: <%= number_to_currency(p.sold_at)   %></p>
-          <%= button_to 'Add to Cart', product_add_to_cart_path(p), class: "btn btn-primary" %>
-        <% end %>
+          <%= link_to 'Add to Cart', new_cart_cart_product_path(p), class: "btn btn-primary" %>
         </div>
       </div>
+       <br> <% end %>
     </div>
-   </div>
+   </div> 
   </div>
+  </center>
       
      
     

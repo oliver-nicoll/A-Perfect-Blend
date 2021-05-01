@@ -7,6 +7,7 @@ class CartProduct < ApplicationRecord
 
     validates :product_id, numericality: { only_integer: true }
     validates :cart_id, numericality: { only_integer: true }
+    validates :user_id, numericality: { only_integer: true }
     validates :quantity, numericality: { only_integer: true }
 
    

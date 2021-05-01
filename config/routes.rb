@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   resources :users, only: [:index] do 
     get '/my-products', to: 'products#index'
   end
-  resources :carts
+  resources :carts do 
+    resources :cart_products
+  end
   
   resources :cart_products
  
