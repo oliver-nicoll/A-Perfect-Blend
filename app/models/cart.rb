@@ -11,33 +11,6 @@ class Cart < ApplicationRecord
     
     # cart has many orders but order belongs to cart
     
-
-    # def add_product(product)
-        
-    #     current_item = cart_products.find_by(product_id: product.id)
-
-    #     if current_item
-    #         current_item.increment(:quantity, 1)
-    #     else
-    #         current_item = self.cart_products.build(product_id: product.id)
-    #         binding.pry
-    #     end
-        
-    #     save 
-    #     self
-    # end
-
-    # def delete_product(product)
-
-    #     current_item = cart_products.find_by(product_id: product.id)
-
-    #     current_item.decrement_counter(:quantity, 1)
-        
-    #     save 
-    #     self
-    # end
-
-
     def subtotal_cart
         sum = 0
 

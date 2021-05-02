@@ -1,4 +1,4 @@
-<h1> Login </h1>
+<center><h1> Login </h1>
 <%= form_with(scope: :user, url: login_path) do |f| %> 
       
   <%= f.text_field :username %>
@@ -10,6 +10,7 @@
 
 
   <br/>
-  <%= f.submit "Login" %>
+  <%= f.submit "Login", class: "btn btn-secondary" %><br><br>
+  <%= button_to 'Login Google', "/auth/google_oauth2" , class: 'nav-link' %>
 
-<% end %>
+<% end %></center>

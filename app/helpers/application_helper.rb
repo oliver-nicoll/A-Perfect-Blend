@@ -7,6 +7,10 @@ module ApplicationHelper
         !!current_user
     end
 
+    def logged_in_as_customer?
+        !!current_user && current_user.customer?
+    end
+
     def vendor_user_or_admin?
         current_user && current_user.vendor? || current_user.admin?
     end

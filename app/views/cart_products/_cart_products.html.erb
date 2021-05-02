@@ -1,9 +1,9 @@
    <% cart.each do |cp| %>
       <pre> Item: <%= cp.product.product_name %>    |       Price: $<%= cp.product.sold_at %> - <%= cp.quantity %><br><br> </pre>
- 
- 
+         <ul>
+      <li>
+        <%= button_to 'Add One', product_cart_pg_add_product_path(cp.product), menthod: :post, class: "btn btn-primary" %>
+        <%= button_to 'Delete One', product_delete_cart_product_path(cp.product), menthod: :post, class: "btn btn-primary" %>
+      </li>
+    </ul>
    <% end %>
-
-  
-
-         

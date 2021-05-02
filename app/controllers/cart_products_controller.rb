@@ -8,7 +8,7 @@ class CartProductsController < ApplicationController
     end
 
     def show
-        
+        @cart_product = CartProduct.find(id: params[:product_id])
     end
     
     def new
@@ -20,24 +20,6 @@ class CartProductsController < ApplicationController
     end
 
     def create
-        
-        # product = Product.find_by(id: params[:product_id])
-        # current_cart = current_user.cart 
-        # # product = Product.find_by(params[:product_id])
-        
-        # if current_cart.products.include?(product)
-        #     @cart_product = current_cart.cart_products.find_by(:product_id => product)
-        #     @cart_product.quantity += 1
-        #     # binding.pry
-        # else
-        #     @cart_product = CartProduct.new
-        #     binding.pry
-        #     @cart_product.cart = current_cart
-        #     @cart_product.product = product 
-        # end
-
-        # @cart_product.cart.save
-        #     redirect_to products_path(@cart_product)
 
         product = Product.find_by(params[:product_id])
         @cart = current_user.cart
@@ -75,7 +57,7 @@ class CartProductsController < ApplicationController
    end
 
    def add_to_cart
-    
+   
     @product = Product.find_by(id: params[:product_id])
         cart = current_user.cart || current_user.create_cart
         if !cart.products.include?(@product)
@@ -84,9 +66,38 @@ class CartProductsController < ApplicationController
             cart_product = cart.cart_products.find_by(product_id: @product.id)
             cart_product.quantity = cart_product.quantity += 1
             cart_product.save
+            
         end
-        
-    redirect_to products_path
+        redirect_to products_path 
+    end
+     
+    def cart_pg_add_product
+        @product = Product.find_by(id: params[:product_id])
+        cart = current_user.cart || current_user.create_cart
+        if !cart.products.include?(@product)
+            CartProduct.create(cart_id: cart.id, product_id: @product.id)
+        else
+            cart_product = cart.cart_products.find_by(product_id: @product.id)
+            cart_product.quantity = cart_product.quantity += 1
+            cart_product.save
+            
+        end
+        redirect_to carts_path 
+    end
+
+  
+def delete_cart_product
+    @product = Product.find_by(id: params[:product_id])
+    cart = current_user.cart
+    @cart_product = cart.cart_products.find_by(product_id: @product.id)
+       if @cart_product.quantity > 1
+            @cart_product.quantity -= 1
+            @cart_product.save
+       else
+        @cart_product.destroy
+    end
+    
+    redirect_to carts_path
 end
     
     private

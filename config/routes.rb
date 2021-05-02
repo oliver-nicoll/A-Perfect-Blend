@@ -19,8 +19,12 @@ Rails.application.routes.draw do
   get '/search', to: 'products#search', as: 'search'
 
   resources :products do 
-    post '/add_to_cart', to: 'cart_products#add_to_cart', as: 'add_to_cart'
-    delete '/delete_cart_item', to: 'cart_products#delete_cart_item', as: 'delete_cart_item'
+      post '/add_to_cart', to: 'cart_products#add_to_cart', as: 'add_to_cart'
+      post '/add_to_cart_page', to: 'cart_products#cart_pg_add_product', as: 'cart_pg_add_product'
+      post '/delete_cart_product', to: 'cart_products#delete_cart_product', as: 'delete_cart_product'
+      get '/cart_products/:id', to: "cart_products#show", as: 'cart_product'
+      delete 'cart_products/:id', to: "cart_products#destroy"
+    
   end
  
   resources :users do 
@@ -33,6 +37,5 @@ Rails.application.routes.draw do
   
   resources :cart_products
  
-  
 
 end
