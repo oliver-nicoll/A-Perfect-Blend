@@ -3,8 +3,8 @@ class Product < ApplicationRecord
     
     belongs_to :vendor, :class_name => "User", :foreign_key => "vendor_id"
      
-    has_many :cart_products, through: :users
-    has_many :carts, through: :cart_products, source: :user
+    has_many :cart_products, dependent: :destroy
+    has_many :carts, through: :cart_products
     has_many :users, through: :carts
    
 

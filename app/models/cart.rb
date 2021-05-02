@@ -9,43 +9,42 @@ class Cart < ApplicationRecord
     validates :user_id, numericality: { only_integer: true }
 
     
+    # cart has many orders but order belongs to cart
     
-    def add_product(product)
-        cart = @current_user.cart.find_by(cart_id: cart.id)
-binding.pry
-        current_item = cart.cart_products.find_by(product_id: product.id)
+
+    # def add_product(product)
         
-        if current_item
-            current_item.increment_counter(:quantity, 1)
+    #     current_item = cart_products.find_by(product_id: product.id)
 
-            current_item.save
-        else
-            current_item = self.cart.cart_products.build(product_id: product.id)
-        end
+    #     if current_item
+    #         current_item.increment(:quantity, 1)
+    #     else
+    #         current_item = self.cart_products.build(product_id: product.id)
+    #         binding.pry
+    #     end
         
-        save 
-        self
-    end
+    #     save 
+    #     self
+    # end
 
-    def delete_product(product)
+    # def delete_product(product)
 
-        current_item = cart_products.find_by(product_id: product.id)
+    #     current_item = cart_products.find_by(product_id: product.id)
 
-        current_item.decrement_counter(:quantity, 1)
+    #     current_item.decrement_counter(:quantity, 1)
         
-        save 
-        self
-    end
-
-     def cart_total
-
-     binding.pry
-        product.sold_at.to_i * quantity.to_i
-    end
+    #     save 
+    #     self
+    # end
 
 
     def subtotal_cart
-        cart_products.to_a.sum { |p| p.subtotal }
+        sum = 0
+
+        self.cart_products.each { |p| sum+= p.total_price }
+
+        return sum 
+        
     end
 
     private

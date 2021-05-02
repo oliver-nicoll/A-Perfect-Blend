@@ -19,7 +19,7 @@
                   </li>  
 <% if logged_in? %>
   <li><%= button_to 'Logout', logout_path, method: 'delete', class: 'nav-link' %></li>
-  <li class="nav-item"> <a class="navbar-brand" href="/carts/:cart_id/cart_products">
+  <li class="nav-item"> <a class="navbar-brand" href="/carts">
                   <%= image_tag("logo/Fearless.png", height: '100', width: '100') %></a>
               </li>
                 <% if vendor_user_or_admin? %>
@@ -29,7 +29,7 @@
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                          <%= link_to 'My Products', products_path, class: "dropdown-item" %>
+                          <%= link_to 'My Products', user_my_products_path(current_user.id), class: "dropdown-item" %>
                         </li>
                         <li>
                           <%= link_to 'Add New Products', new_product_path, class: "dropdown-item" %>
@@ -37,7 +37,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <li><%= link_to 'Profile', profile_path, class: "dropdown-item" %></li>
                         </ul>
-                        <li class="nav-item"> <a class="navbar-brand" href="/carts/:cart_id/cart_products">
+                        <li class="nav-item"> <a class="navbar-brand" href="/carts">
                   <%= image_tag("logo/Fearless.png", height: '100', width: '100') %></a>
               </li>
                     </li>  <% end %>  

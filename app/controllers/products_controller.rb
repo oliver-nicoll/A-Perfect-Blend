@@ -5,8 +5,9 @@ class ProductsController < ApplicationController
     end
 
     def index
-
-        if current_user && current_user.vendor?
+ 
+        # binding.pry
+        if params[:user_id]
             @products = current_user.products
         else
             @products = Product.all

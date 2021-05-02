@@ -1,26 +1,2 @@
 <h1>Cart Product</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Cart</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cart_products.each do |cart_product| %>
-      <tr>
-        <td><%= cart_product.product %></td>
-        <td><%= cart_product.cart %></td>
-        <td><%= link_to 'Show', cart_cart_product_path %></td>
-        <td><%= button_to 'Edit', edit_cart_cart_product_path(cart_product) %></td>
-        <td><%= button_to 'Destroy', cart_cart_product_path, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Cart Product', new_cart_product_path %>

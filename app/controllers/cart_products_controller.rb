@@ -4,9 +4,7 @@ class CartProductsController < ApplicationController
     before_action :set_cart, only: [:create]
 
     def index 
-        # cart = current_user.cart.find_by(id: params[:cart_id])
         @cart_products = current_user.cart.cart_products.all
-        
     end
 
     def show
@@ -14,9 +12,7 @@ class CartProductsController < ApplicationController
     end
     
     def new
-binding.pry
-        cart = current_user.cart.find(id: params[:cart_id])
-        @cart_product = cart.cart_products.new
+        @cart_product = CartProduct.new
     end
 
     def edit
@@ -24,8 +20,27 @@ binding.pry
     end
 
     def create
+        
+        # product = Product.find_by(id: params[:product_id])
+        # current_cart = current_user.cart 
+        # # product = Product.find_by(params[:product_id])
+        
+        # if current_cart.products.include?(product)
+        #     @cart_product = current_cart.cart_products.find_by(:product_id => product)
+        #     @cart_product.quantity += 1
+        #     # binding.pry
+        # else
+        #     @cart_product = CartProduct.new
+        #     binding.pry
+        #     @cart_product.cart = current_cart
+        #     @cart_product.product = product 
+        # end
+
+        # @cart_product.cart.save
+        #     redirect_to products_path(@cart_product)
+
         product = Product.find_by(params[:product_id])
-        @cart = current_user.cart.find_by(params[:cart_id])
+        @cart = current_user.cart
         
             if @cart.nil?
                 @cart = current_user.build_cart
@@ -35,7 +50,7 @@ binding.pry
             redirect_to products_path(@cart_product)
         else
             flash[:message] = "Try Again!"
-            render :new
+            redirect_to products_path
         end
     end
 
@@ -52,31 +67,27 @@ binding.pry
     end
 
    def destroy
-        # @cart = current_user.cart
 
-        # @cart_product = @cart.cart_products.find(params[:id])
-        
+        @cart_product = CartProduct.find(params[:id])
         @cart_product.destroy
-
+        flash[:message] = "Cart Product Deleted!"
         redirect_to root_path
    end
 
    def add_to_cart
-
+    
     @product = Product.find_by(id: params[:product_id])
         cart = current_user.cart || current_user.create_cart
+        if !cart.products.include?(@product)
+            CartProduct.create(cart_id: cart.id, product_id: @product.id)
+        else
+            cart_product = cart.cart_products.find_by(product_id: @product.id)
+            cart_product.quantity = cart_product.quantity += 1
+            cart_product.save
+        end
         
-        cart.add_product(@product)
-    
     redirect_to products_path
 end
-
-# def delete_cart_item
-#     @product = Product.find_by(id: params[:product_id])
-#     cart = current_user.cart(@product)
-        
-#     cart.cart_product.destroy
-# end
     
     private
 
@@ -91,7 +102,6 @@ end
         params.require(:cart_products).permit(
         :cart_id,
         :product_id,
-        :vendor_id,
         :quantity
         )
     end
