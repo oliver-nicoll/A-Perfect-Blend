@@ -1,6 +1,7 @@
 
 <%= render 'errors' %>
-
+<center><div style=" font-family: copperplate; color: white; margin-top: 10px;">
+  
 <%= form_with(model: @product) do |f| %>
     <%= f.label :image %>
     <%= f.text_field :image %><br>
@@ -16,3 +17,4 @@
     <%= f.number_field :sold_at, in: 1.0..200.0, step: 0.01 %><br>
     <%= f.submit 'Create Product' %>
 <% end %>
+</div></center>

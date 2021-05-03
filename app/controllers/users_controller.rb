@@ -15,11 +15,10 @@ class UsersController < ApplicationController
         @user.role = params[:user][:role].to_i
         
         if @user.save
-          flash[:message] = "Successfully signed up."
           session[:user_id] = @user.id
-          redirect_to root_path
+          redirect_to root_path, info: "Successfully signed up!"
         else
-          render :new
+          redirect_to signup_path, danger: "Try Again - Error"
         end
       end
       
@@ -37,14 +36,14 @@ class UsersController < ApplicationController
         if @user.valid?
             redirect_to profile_path(@user)
         else 
-            flash[:message] = "User not valid"
-            render :edit
+
+            redirect_to profile_edit_path, danger: "User not Valid - Try Again"
         end
       end
     
       def destroy
         session.delete("user_id")
-        redirect_to root_path
+        redirect_to root_path,info: "Sad to see you go!!"
       end
   
       private

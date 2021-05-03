@@ -7,18 +7,18 @@ class SessionsController < ApplicationController
         @user = User.find_by_username(params[:user][:username])
   
         if @user && @user.authenticate(params[:user][:password])
-            flash[:message] = "Succesful sign in"
             session[:user_id] = @user.id
-            redirect_to root_path
+            redirect_to root_path, info: "Signed in with Google"
         else
-            flash[:message] = "Invalid, try again"
-            render :new
+    
+            redirect_to login_path, danger: "Try Again - Not Valid"
+            
         end
     end
   
     def logout
       session.clear
-      redirect_to login_path
+      redirect_to login_path, info: "See you next time!"
     end
   
       def omniauth
@@ -34,12 +34,10 @@ class SessionsController < ApplicationController
           end
           
           if @user.valid?
-              flash[:messsage] = "Signed in with Google"
               session[:user_id] = @user.id
-              redirect_to root_path
+              redirect_to root_path, info: "Signed in with Google"
           else
-              flash[:message] = "Try Again - Not Valid"
-              redirect_to login_path
+              redirect_to login_path, danger: "Try Again - Not Valid"
           end
       end
   

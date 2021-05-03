@@ -30,8 +30,8 @@ class ProductsController < ApplicationController
         if @product.save
             redirect_to products_path(@product)
         else
-            flash[:message] = "Product not saved, try again"
-            render :new
+            
+            redirect_to new_products_path, danger: "Product not saved, try again"
         end
     end
 
@@ -49,8 +49,7 @@ class ProductsController < ApplicationController
         if @product.valid?
             redirect_to product_path(@product)
         else 
-            flash[:message] = "Product not valid"
-            render :edit
+            redirect_to edit_product_path, danger: "Product not valid"
         end
     end
 
@@ -61,7 +60,7 @@ class ProductsController < ApplicationController
         
         @product.destroy
         
-        redirect_to products_path
+        redirect_to products_path, info: "Product Deleted"
     end
     
   

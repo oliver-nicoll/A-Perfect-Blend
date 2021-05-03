@@ -28,14 +28,18 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+
+
 p {
   color: white;
 }
+
 .bg-main {
-  background-image: url("apb-coffee/basicpg.jpg");
+  background-image: url("apb-coffee/basicpg.png");
   height: 100vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
   }
+
   

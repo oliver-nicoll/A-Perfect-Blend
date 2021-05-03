@@ -1,4 +1,5 @@
-<center><h1> Login </h1>
+<center><div style=" font-family: copperplate; color: white; margin-top: 10px;">
+  <h1> Login </h1>
 <%= form_with(scope: :user, url: login_path) do |f| %> 
       
   <%= f.text_field :username %>
@@ -12,4 +13,5 @@
   <br/>
   <%= f.submit "Login", class: "btn btn-secondary" %><br><br>
 <% end %>
-  <%= link_to 'Login Google', "/auth/google_oauth2", class: "btn btn-secondary", method: :post %></center>
+  <%= link_to 'Login Google', "/auth/google_oauth2", class: "btn btn-secondary", method: :post %>
+  </div></center>

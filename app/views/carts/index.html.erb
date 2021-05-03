@@ -1,11 +1,12 @@
 <div class= "shopping-cart">
        <center> <h1> Shopping Cart </h1></center>
-          <div>
+          <center><div style=" font-family: copperplate; color: white; margin-top: 10px;">
+  
             <%= link_to 'Keep Shopping', products_path, class: 'shoping cart button' %>
             </div>
            <center> <section>
               <%= render partial: "cart_products/cart_products", locals: { cart: @cart }  %>
-            <%= current_user.cart.products.total_price %>
 
           </section></center>
+          </div></center>
   </div>

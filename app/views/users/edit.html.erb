@@ -1,21 +1,23 @@
+<center><div style=" font-family: copperplate; color: white; margin-top: 10px;">
 <%= form_with(model: @user, url: profile_update_path) do |f| %> 
       <%= f.label :name %>
-      <%= f.text_field :name %><br>
+      <%= f.text_field :name, placeholder: "Name" %><br>
 
       <%= f.label :business_name %>
-      <%= f.text_field :business_name %><br>
+      <%= f.text_field :business_name, placeholder: "Business Name"  %><br>
 
       <%= f.label :username %>
-      <%= f.text_field :username %><br>
+      <%= f.text_field :username, placeholder: "Username"  %><br>
   
       <%= f.label :email  %>
-      <%= f.email_field :email %><br>
+      <%= f.email_field :email, placeholder: "Email"  %><br>
   
       <%= f.label :password %>
-      <%= f.password_field :password %><br>
+      <%= f.password_field :password, placeholder: "Password Confirmation"  %><br>
       <br/>
       <%= f.submit "Update Profile" %>
   </div>
   
 <% end %>
+</div></center>
  

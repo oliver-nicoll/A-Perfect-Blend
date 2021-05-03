@@ -1,3 +1,5 @@
+   <center><div style=" font-family: copperplate; color: white; margin-top: 10px;">
+  
    <% cart.each do |cp| %>
       <li> Item: <%= cp.product.product_name %>    |       Price: $<%= cp.product.sold_at %>  |  Quantity: <%= cp.quantity %><br><br> </li>
          <ul>
@@ -9,3 +11,5 @@
       </li>
     </ul>
    <% end %>
+   </div></center>
+

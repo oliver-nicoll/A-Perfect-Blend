@@ -30,8 +30,7 @@ class CartProductsController < ApplicationController
         if  @cart_product.save
             redirect_to products_path(@cart_product)
         else
-            flash[:message] = "Try Again!"
-            redirect_to products_path
+            redirect_to products_path, danger: "Try Again"
         end
     end
 
@@ -41,16 +40,14 @@ class CartProductsController < ApplicationController
             if @cart_product.valid?
                 redirect_to cart_product_path
             else
-                flash[:message] = "Try Again!"
-                render :edit
+                render edit_cart_cart_product_path, danger: "Try Again!"
             end
     end
 
    def destroy
         @cart_product = CartProduct.find(params[:id])
         @cart_product.destroy
-        flash[:message] = "Cart Product Deleted!"
-        redirect_to root_path
+        redirect_to root_path, success: "Cart Product Deleted!"
    end
 
    def add_to_cart
@@ -65,7 +62,7 @@ class CartProductsController < ApplicationController
             cart_product.save
             
         end
-        redirect_to products_path 
+        redirect_to products_path, sucess: "Added to cart!"
     end
      
     def cart_pg_add_product
@@ -79,7 +76,7 @@ class CartProductsController < ApplicationController
             cart_product.save
             
         end
-        redirect_to carts_path 
+        redirect_to carts_path, sucess: "Added to cart!"
     end
 
   
@@ -94,7 +91,16 @@ def delete_cart_product
         @cart_product.destroy
     end
     
-    redirect_to carts_path
+    redirect_to carts_path, success: "Deleted from cart!"
+end
+
+def total_price_cp
+    product = Product.find_by(id: params[:product_id])
+    cart = current_user.cart
+    binding.pry
+    # @cart_product = cart.cart_products.find_by(product_id: product.id)
+    total = cart.quantity * cart.product.sold_at
+    return total
 end
     
     private

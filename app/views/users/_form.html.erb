@@ -1,27 +1,29 @@
-<%= form_with(model: @user, url: post_signup_path) do |f| %> 
+<center><div style=" font-family: copperplate; color: white; margin-top: 10px;">
+    <%= form_with(model: @user, url: post_signup_path) do |f| %> 
+          
+          <%= f.text_field :name, placeholder: "Name" %>
+          <p><%= f.label :name  %></p>
+          <br>
+        
+          <%= f.text_field :username, placeholder: "Username" %>
+          <p><%= f.label :username %></p>
+          <br>
       
-      <%= f.text_field :name %>
-      <p><%= f.label :name  %></p>
-      <br>
-    
-      <%= f.text_field :username %>
-      <p><%= f.label :username %></p>
-      <br>
-  
-      <%= f.email_field :email %>
-      <p><%= f.label :email  %><br></p>
+          <%= f.email_field :email, placeholder: "Email" %>
+          <p><%= f.label :email  %><br></p>
 
-      <%= f.select :role, options_for_select(User.roles.map {|k,v| [k.humanize, v]}) %>
-      <p> <%= f.label :role  %></p><br><br>
+          <%= f.select :role, options_for_select(User.roles.map {|k,v| [k.humanize, v]}) %>
+          <p> <%= f.label :role  %></p><br><br>
 
-      <%= f.password_field :password %>
-      <p><%= f.label :password %></p><br>
+          <%= f.password_field :password, placeholder: "Password" %>
+          <p><%= f.label :password %></p><br>
 
+          
+          <%=f.password_field :password_confirmation, placeholder: "Password Confirmation"%>
+          <p><%=f.label :password_confirmation %></p><br>
+            <br/>
+          <p><%= f.submit "Sign Up", class: "btn btn-outline-light"%></p>
+        </div>
       
-      <%=f.password_field :password_confirmation%>
-      <p><%=f.label :password_confirmation %></p><br>
-        <br/>
-      <p><%= f.submit "Sign Up", class: "btn btn-outline-light"%></p>
-    </div>
-  
-<% end %>
+    <% end %>
+</div></center>

@@ -19,8 +19,12 @@
       <font face = "Verdana" size = "4">
         <div>
                <%= render(partial: "layouts/navbar") %>
-              <%= flash[:notice]%>
-               <%= flash[:message]%>
+               <% flash.each do |name, msg| %>
+                  <div class='alert alert-<%= name %>'>
+                    <%= msg %>
+                  </div>
+               <% end %>
+      
                 <%= yield %>
 
               <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

@@ -1,23 +1,25 @@
 
-<div class="row column text-center">
+<center><div style=" font-family: copperplate; color: white; margin-top: 10px;">
     <h1> Beyond the Blend Market</h1>
       <h2>Products</h2>
       <hr>
- </div> 
+ </div> </center>
  
- <div class="container">
+  
+ <div class="container", style=" font-family: copperplate;">
   <center><div class="row">
         <% @products.each do |p| %>
       <div class="col-sm">
         <div class="card" style="width: 24rem;">
         <%= image_tag(p.image || "https://placehold.it/300x400", class: "thumbnail") %>
-        <div class="card-body">
+        <div class="card-body", style=" color: 'white;'">
           <h5><%= link_to(p.product_name, product_path(p), class: "card-title") %></h5>
-          <p class="card-text">Price: <%= number_to_currency(p.sold_at)   %></p>
+          <p class="card-text", style=" color: black;">Price: <%= number_to_currency(p.sold_at)   %></p>
               <% if logged_in? %>
                 <%= button_to 'Add to Cart', product_add_to_cart_path(p), menthod: :post, class: "btn btn-primary" %>
               <% else %>
-                <% flash[:message] = "Must be logged in to shop - Log in or Create an Account!" %>
+            
+               <% flash[:message] = "Must be logged in to buy products - Sign Up Today or Login!" %> 
                 <% end %>
         </div>
       </div>
