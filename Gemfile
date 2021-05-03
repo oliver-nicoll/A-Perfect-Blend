@@ -74,3 +74,7 @@ gem "bulma-rails", "~> 0.9.1"
 gem "gravatar_image_tag", "~> 1.2"
 
 gem "omniauth", "~> 2.0"
+
+gem "sprockets-rails", "~> 3.2"
+
+gem "sprockets", "~> 4.0"

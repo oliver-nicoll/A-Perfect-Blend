@@ -10,7 +10,11 @@ class Cart < ApplicationRecord
 
     
     # cart has many orders but order belongs to cart
-    
+    def total_price
+
+        self.quantity * self.product.sold_at
+   end
+   
     def subtotal_cart
         sum = 0
 
