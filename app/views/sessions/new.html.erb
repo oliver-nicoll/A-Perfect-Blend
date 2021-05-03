@@ -11,6 +11,5 @@
 
   <br/>
   <%= f.submit "Login", class: "btn btn-secondary" %><br><br>
-  <%= button_to 'Login Google', "/auth/google_oauth2" , class: 'nav-link' %>
-
-<% end %></center>
+<% end %>
+  <%= link_to 'Login Google', "/auth/google_oauth2", class: "btn btn-secondary", method: :post %></center>

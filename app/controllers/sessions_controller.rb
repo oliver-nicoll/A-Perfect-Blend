@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
               u.password = SecureRandom.hex(10)
               u.role
           end
-        #  binding.pry
+          
           if @user.valid?
               flash[:messsage] = "Signed in with Google"
               session[:user_id] = @user.id

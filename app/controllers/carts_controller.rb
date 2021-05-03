@@ -31,7 +31,6 @@ class CartsController < ApplicationController
     end
 
     def edit 
-
     end
 
     def update
@@ -55,7 +54,6 @@ class CartsController < ApplicationController
     end
 
     def checkout
-        
     end
 
     private 

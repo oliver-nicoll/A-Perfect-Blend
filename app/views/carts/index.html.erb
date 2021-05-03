@@ -1,11 +1,10 @@
-
-<details class= "shopping-cart">
-        <summary> Shopping Cart </summary>
+<div class= "shopping-cart">
+       <center> <h1> Shopping Cart </h1></center>
           <div>
             <%= link_to 'Keep Shopping', products_path, class: 'shoping cart button' %>
             </div>
-            <section>
+           <center> <section>
               <%= render partial: "cart_products/cart_products", locals: { cart: @cart }  %>
             
-          </section>
-  </details>
+          </section></center>
+  </div>

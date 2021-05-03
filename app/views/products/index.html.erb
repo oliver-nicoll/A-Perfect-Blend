@@ -13,7 +13,11 @@
         <div class="card-body">
           <h5><%= link_to(p.product_name, product_path(p), class: "card-title") %></h5>
           <p class="card-text">Price: <%= number_to_currency(p.sold_at)   %></p>
-              <%= button_to 'Add to Cart', product_add_to_cart_path(p), menthod: :post, class: "btn btn-primary" %>
+              <% if logged_in? %>
+                <%= button_to 'Add to Cart', product_add_to_cart_path(p), menthod: :post, class: "btn btn-primary" %>
+              <% else %>
+                <% flash[:message] = "Must be logged in to shop - Log in or Create an Account!" %>
+                <% end %>
         </div>
       </div>
        <br> <% end %>

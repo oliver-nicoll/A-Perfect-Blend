@@ -16,7 +16,6 @@ class CartProductsController < ApplicationController
     end
 
     def edit
-
     end
 
     def create
@@ -37,7 +36,6 @@ class CartProductsController < ApplicationController
     end
 
     def update
-        # @cart_product = CartProduct.find_by(id: params[:id])
         @cart_product = @cart.cart_products.find(params[:id])
         @cart_product.update(cart_product_params)
             if @cart_product.valid?
@@ -49,7 +47,6 @@ class CartProductsController < ApplicationController
     end
 
    def destroy
-
         @cart_product = CartProduct.find(params[:id])
         @cart_product.destroy
         flash[:message] = "Cart Product Deleted!"
