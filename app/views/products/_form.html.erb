@@ -4,17 +4,17 @@
   
 <%= form_with(model: @product) do |f| %>
     <%= f.label :image %>
-    <%= f.text_field :image %><br>
+    <%= f.text_field :image,  placeholder: "Image URL"  %><br>
     <%= f.label :category %>
-    <%= f.text_field :category %><br>
+    <%= f.text_field :category,  placeholder: "Category" %><br>
     <%= f.label :product_name %>
-    <%= f.text_field :product_name %><br>
+    <%= f.text_field :product_name,  placeholder: "Product Name" %><br>
     <%= f.label :product_description %>
-    <%= f.text_field :product_description %><br>
+    <%= f.text_field :product_description,  placeholder: "Product Description" %><br>
     <%= f.label :instock %>
-    <%= f.number_field :instock, in: 1.0..200.0, step: 1.0 %><br>
+    <%= f.number_field :instock, in: 1.0..200.0, step: 1.0,  placeholder: "Instock" %><br>
     <%= f.label :sold_at %>
-    <%= f.number_field :sold_at, in: 1.0..200.0, step: 0.01 %><br>
+    <%= f.number_field :sold_at, in: 1.0..200.0, step: 0.01,  placeholder: "Price" %><br>
     <%= f.submit 'Create Product' %>
 <% end %>
 </div></center>

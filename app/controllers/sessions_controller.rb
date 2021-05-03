@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
-            redirect_to root_path, info: "Signed in with Google"
+            redirect_to root_path, info: "Signed In!"
         else
     
             redirect_to login_path, danger: "Try Again - Not Valid"
