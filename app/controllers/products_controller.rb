@@ -31,8 +31,14 @@ class ProductsController < ApplicationController
     end
     
     def new
-        product = current_user.products.find_by(id: params[:product_id])
-        @product = Product.new
+        if @current_user
+            @current_user.products.build
+        else
+            @product = Product.new
+            @product.build_user
+        end
+        
+        #product = current_user.products.find_by(id: params[:product_id])
     end
     
     def create
