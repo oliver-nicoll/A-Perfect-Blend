@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-    before_action :find_user, only: [:index]
+    before_action :find_user, only: [:index, :new, :create]
     before_action :redirect_if_not_logged_in_as_vendor_or_admin, only: [:new, :create, :edit, :update, :destroy ]
     def search
         @products = Product.search(params[:product_name])
@@ -14,14 +14,6 @@ class ProductsController < ApplicationController
         else
             @products = Product.all
         end
-
-
-        # if params[:user_id] 
-        # @current_user = User.find(params[:user_id])
-        # @products = @current_user.products
-        # else
-        #     @products = Product.all
-        # end
     end
 
     def show
@@ -51,6 +43,11 @@ class ProductsController < ApplicationController
             
             redirect_to new_products_path, danger: "Product not saved, try again"
         end
+
+        #if @current_user
+            #@product - @current_user.products.build(product_params)
+        #else
+            #@product = Product.new(product_params)
     end
 
     def edit

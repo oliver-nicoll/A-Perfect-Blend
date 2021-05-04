@@ -10,6 +10,10 @@ And then from the project directory execute:
 
 	$ bundle
 
+You'll also want to run 
+
+	$ rails db:migrate
+
 ## Usage
 
 In order to run this application, execute:
