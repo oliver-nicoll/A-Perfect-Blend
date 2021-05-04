@@ -1,16 +1,19 @@
 class ProductsController < ApplicationController
     before_action :find_user, only: [:index, :new, :create]
     before_action :redirect_if_not_logged_in_as_vendor_or_admin, only: [:new, :create, :edit, :update, :destroy ]
+    #nav bar bug
+    
     def search
         @products = Product.search(params[:product_name])
         render :index
     end
 
     def index
-
-        if params[:user_id] 
-            @current_user = User.find(params[:user_id])
-            @products = @current_user.products
+#why doesn't @c_user work?
+# binding.pry
+        if @c_user 
+            # @current_user = User.find(params[:user_id])
+            @products = @c_user.products
         else
             @products = Product.all
         end
@@ -21,14 +24,14 @@ class ProductsController < ApplicationController
     end
     
     def new
-        if @current_user
-            @product = @current_user.products.build
+        if @c_user
+            @product = @c_user.products.build
         else
             @product = Product.new
             @product.build_user
         end
 
-        #product = current_user.products.find_by(id: params[:product_id])
+        #product = c_user.products.find_by(id: params[:product_id])
     end
     
     def create
@@ -44,8 +47,8 @@ class ProductsController < ApplicationController
             redirect_to new_products_path, danger: "Product not saved, try again"
         end
 
-        #if @current_user
-            #@product - @current_user.products.build(product_params)
+        #if @c_user
+            #@product - @c_user.products.build(product_params)
         #else
             #@product = Product.new(product_params)
     end
@@ -94,6 +97,6 @@ class ProductsController < ApplicationController
         end
 
         def find_user
-            @current_user = User.find_by_id(params: [:user_id])
+            @c_user = User.find_by_id(params[:user_id])
         end
 end
