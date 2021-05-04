@@ -3,6 +3,7 @@
     <h1> Beyond the Blend Market</h1>
       <h2>Products</h2>
       <hr>
+      <p> Please Login or Sign Up if you wish to add items to your cart </p>
  </div> </center>
  
   
@@ -15,11 +16,8 @@
         <div class="card-body", style=" color: 'white;'">
           <h5><%= link_to(p.product_name, product_path(p), class: "card-title") %></h5>
           <p class="card-text", style=" color: black;">Price: <%= number_to_currency(p.sold_at)   %></p>
-              <% if logged_in? %>
+              <% if logged_in_as_customer? %>
                 <%= button_to 'Add to Cart', product_add_to_cart_path(p), menthod: :post, class: "btn btn-primary" %>
-              <% else %>
-            
-               <% flash[:message] = "Must be logged in to buy products - Sign Up Today or Login!" %> 
                 <% end %>
         </div>
       </div>

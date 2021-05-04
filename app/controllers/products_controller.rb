@@ -7,20 +7,18 @@ class ProductsController < ApplicationController
     end
 
     def index
-        if @current_user
+
+        if params[:user_id] 
+            @current_user = User.find(params[:user_id])
             @products = @current_user.products
         else
             @products = Product.all
         end
 
+
+        # if params[:user_id] 
         # @current_user = User.find(params[:user_id])
-        # if @current_user.admin?
-        #     @products = @current_user.products
-        # else
-        #     @products = Product.all
-        # end
-        # if params[:user_id]
-        #     @products = current_user.products
+        # @products = @current_user.products
         # else
         #     @products = Product.all
         # end
@@ -32,12 +30,12 @@ class ProductsController < ApplicationController
     
     def new
         if @current_user
-            @current_user.products.build
+            @product = @current_user.products.build
         else
             @product = Product.new
             @product.build_user
         end
-        
+
         #product = current_user.products.find_by(id: params[:product_id])
     end
     
@@ -99,6 +97,6 @@ class ProductsController < ApplicationController
         end
 
         def find_user
-            @current_user = User.find(params: [:user_id])
+            @current_user = User.find_by_id(params: [:user_id])
         end
 end
