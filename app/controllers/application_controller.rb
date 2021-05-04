@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
-    include CurrentCart
     include ApplicationHelper
     
     before_action :current_cart

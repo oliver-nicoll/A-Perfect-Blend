@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
  
   resources :users do 
-    get '/my-products', to: 'products#index'
+    resources :products
   end
   
   resources :carts do 

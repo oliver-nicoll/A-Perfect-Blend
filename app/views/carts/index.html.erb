@@ -1,11 +1,12 @@
 <div class= "shopping-cart">
-       <center> <h1> Shopping Cart </h1></center>
+       <center><div style=" font-family: copperplate; color: white; margin-top: 10px;"> <h1> Shopping Cart </h1></center>
           <center><div style=" font-family: copperplate; color: white; margin-top: 10px;">
   
             <%= link_to 'Keep Shopping', products_path, class: 'shoping cart button' %>
             </div>
            <center> <section>
               <%= render partial: "cart_products/cart_products", locals: { cart: @cart }  %>
+            <h4 style=" font-family: copperplate;">  Total: <%= number_to_currency(@total_cart.subtotal_cart) %> </h4>
 
           </section></center>
           </div></center>

@@ -1,11 +1,12 @@
 class CartsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
     before_action :set_cart, only: [:show, :edit, :update, :destroy]
-    
+    include CartsHelper
     
     def index
-    
+    # binding.pry
         @cart = current_user.cart.cart_products.all 
+        @total_cart = current_user.cart
         
     end
 

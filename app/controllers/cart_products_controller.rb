@@ -1,7 +1,8 @@
 class CartProductsController < ApplicationController
-    include CurrentCart
+    include CartsHelper
     before_action :set_cart_product, only: [:show, :edit, :update, :destroy]
     before_action :set_cart, only: [:create]
+    
 
     def index 
         @cart_products = current_user.cart.cart_products.all

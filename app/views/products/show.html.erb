@@ -9,7 +9,7 @@
             </div>
             <%= link_to 'Back', products_path(@products), class: "btn btn-outline-light" %>
                 <% if logged_in? && vendor_user_or_admin?  %>
-                    <%= link_to 'Edit Product', edit_product_path(@product), class: "btn btn-outline-light" %>
-                    <%= link_to 'Delete Product', product_path(@product), method: 'delete', class: "btn btn-outline-light" %>
+                    <%= link_to 'Edit Product', edit_user_product_path(@current_user, @product), class: "btn btn-outline-light" %>
+                    <%= link_to 'Delete Product', user_product_path(@current_user, @product), method: 'delete', class: "btn btn-outline-light" %>
                 <% end %>
                 </div></center>

@@ -1,15 +1,29 @@
 class ProductsController < ApplicationController
+    before_action :find_user, only: [:index]
+    before_action :redirect_if_not_logged_in_as_vendor_or_admin, only: [:new, :create, :edit, :update, :destroy ]
     def search
         @products = Product.search(params[:product_name])
         render :index
     end
 
     def index
-        if params[:user_id]
-            @products = current_user.products
+        if @current_user
+            @products = @current_user.products
         else
             @products = Product.all
         end
+
+        # @current_user = User.find(params[:user_id])
+        # if @current_user.admin?
+        #     @products = @current_user.products
+        # else
+        #     @products = Product.all
+        # end
+        # if params[:user_id]
+        #     @products = current_user.products
+        # else
+        #     @products = Product.all
+        # end
     end
 
     def show
@@ -17,12 +31,12 @@ class ProductsController < ApplicationController
     end
     
     def new
-        redirect_if_not_logged_in_as_vendor_or_admin
+        product = current_user.products.find_by(id: params[:product_id])
         @product = Product.new
     end
     
     def create
-        redirect_if_not_logged_in_as_vendor_or_admin
+        
 
         @product = current_user.products.build(product_params)
 
@@ -36,12 +50,12 @@ class ProductsController < ApplicationController
     end
 
     def edit
-        redirect_if_not_logged_in_as_vendor_or_admin
+        
         @product = Product.find_by(id: params[:id])
     end
     
     def update
-        redirect_if_not_logged_in_as_vendor_or_admin
+        
 
         @product = Product.find_by(id: params[:id])
         @product.update(product_params)
@@ -54,7 +68,7 @@ class ProductsController < ApplicationController
     end
 
     def destroy
-        redirect_if_not_logged_in_as_vendor_or_admin
+        
 
         @product = Product.find_by(id: params[:id])
         
@@ -76,5 +90,9 @@ class ProductsController < ApplicationController
             :image,
             :category,
           )
+        end
+
+        def find_user
+            @current_user = User.find(params: [:user_id])
         end
 end

@@ -10,48 +10,45 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                     <%= link_to 'Menu', menu_path, class: 'nav-link' %><br>
-                  </li><br><br>
+                  </li>
                   <li class="nav-item">
                     <%= link_to 'About Us', about_us_path, class: 'nav-link' %><br>                        
-                  </li><br><br>
+                  </li>
                   <li class="nav-item">
                     <%= link_to 'Beyond the Blend', products_path, class: 'nav-link' %><br>                                    
-                  </li><br>  <br>
-<% if logged_in? %>
-  <li><%= button_to 'Logout', logout_path, method: 'delete', class: 'nav-link' %></li>
-  <br><br>
-  <li class="nav-item"> <a class="navbar-brand" href="/carts">
-                  <%= image_tag("logo/Fearless.png", height: '100', width: '100') %></a>
-              </li>
-                <% if vendor_user_or_admin? %>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Vendor
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                          <%= link_to 'My Products', user_my_products_path(current_user.id), class: "dropdown-item" %>
-                        </li>
-                        <li>
-                          <%= link_to 'Add New Products', new_product_path, class: "dropdown-item" %>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><%= link_to 'Profile', profile_path, class: "dropdown-item" %></li>
-                        </ul>               
-               <% end %>  
-        <% else %>
-            <li class="nav-item">
-            <%= link_to 'Sign Up', signup_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-            <%= link_to 'Login', login_path, class: 'nav-link' %>
-            </li>
-            
-            
-        <% end%><br>
-            </ul> 
-            <div>
-                <%= form_with(url: search_path, method: 'get', class: 'd-flex') do |f| %>
+                  </li>
+
+                          <% if logged_in? %>
+                              <li class="nav-item">
+                                <%= button_to 'Logout', logout_path, method: 'delete', class: 'nav-link' %>
+                              </li>
+                                  <% if logged_in_as_customer? %>
+                                      <li class="nav-item"> <a class="navbar-brand" href="/carts">
+                                          <%= image_tag("logo/Fearless.png", height: '100', width: '100') %></a>
+                                      </li>
+                                  <% end %>
+                                      <% if vendor_user_or_admin? %>
+                                          <li class="nav-item">
+                                            <%= link_to 'My Products', user_products_path(@current_user), class: "nav-link" %>                                  
+                                          </li>
+                                          <li class="nav-item">                                     
+                                            <%= link_to 'Add New Products', new_user_product_path(@current_user), class: "nav-link" %>                                                                       
+                                          </li>
+                                          <li class="nav-item">
+                                          <%= link_to 'Profile', profile_path, class: "nav-link" %>
+                                          </li>
+                                       <% end %>
+                          <% else %>
+                            <li class="nav-item">
+                            <%= link_to 'Sign Up', signup_path, class: 'nav-link' %>
+                            </li>
+                            <li class="nav-item">
+                            <%= link_to 'Login', login_path, class: 'nav-link' %>
+                            </li>  
+                      <% end%><br>
+                      </ul> 
+                      <div>
+                  <%= form_with(url: search_path, method: 'get', class: 'd-flex') do |f| %>
                   <%= f.text_field :product_name, class: "form-control me-2", placeholder: "Search for Product" %>
                   <%= f.submit :Search, class: "btn btn-outline-success" %>
                 <% end %>
