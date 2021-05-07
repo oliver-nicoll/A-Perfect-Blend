@@ -4,7 +4,6 @@ class CartsController < ApplicationController
     include CartsHelper
     
     def index
-    # binding.pry
         @cart = current_user.cart.cart_products.all 
         @total_cart = current_user.cart
         
@@ -51,7 +50,7 @@ class CartsController < ApplicationController
         
         @cart.destroy
 
-        redirect_to root_path
+        redirect_to root_path, danger: "Cart Deleted"
     end
 
     def checkout

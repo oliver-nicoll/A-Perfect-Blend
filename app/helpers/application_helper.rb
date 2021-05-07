@@ -27,8 +27,6 @@ module ApplicationHelper
         !!current_user && !!current_user.vendor? || !!current_user.admin?
     end
 
-
-
     def subtotal_cart
         sum = 0
 

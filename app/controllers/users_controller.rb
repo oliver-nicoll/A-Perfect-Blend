@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+  before_action :redirect_if_not_logged_in_as_vendor_or_admin, only: [:edit, :update]
+
       def profile
         @user = User.find_by(id: params[:id])
       end
@@ -23,12 +24,12 @@ class UsersController < ApplicationController
       end
       
       def edit
-        redirect_if_not_logged_in_as_vendor_or_admin
+        # redirect_if_not_logged_in_as_vendor_or_admin
         @user = User.find_by(id: params[:id])
       end
 
       def update
-        redirect_if_not_logged_in_as_vendor_or_admin
+        # redirect_if_not_logged_in_as_vendor_or_admin
 
         @user = User.find_by(id: params[:id])
         @user.update(user_params)

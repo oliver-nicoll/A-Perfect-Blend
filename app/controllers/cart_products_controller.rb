@@ -1,5 +1,6 @@
 class CartProductsController < ApplicationController
     include CartsHelper
+
     before_action :set_cart_product, only: [:show, :edit, :update, :destroy]
     before_action :set_cart, only: [:create]
     
@@ -29,7 +30,7 @@ class CartProductsController < ApplicationController
             end
             @cart_product = @cart.add_product(product)
         if  @cart_product.save
-            redirect_to products_path(@cart_product)
+            redirect_to products_path(@cart_product), , success: "Updated!"
         else
             redirect_to products_path, danger: "Try Again"
         end
@@ -39,7 +40,7 @@ class CartProductsController < ApplicationController
         @cart_product = @cart.cart_products.find(params[:id])
         @cart_product.update(cart_product_params)
             if @cart_product.valid?
-                redirect_to cart_product_path
+                redirect_to cart_product_path, success: "Updated!"
             else
                 render edit_cart_cart_product_path, danger: "Try Again!"
             end
@@ -63,7 +64,7 @@ class CartProductsController < ApplicationController
             cart_product.save
             
         end
-        redirect_to products_path, sucess: "Added to cart!"
+        redirect_to products_path, success: "Added to cart!"
     end
      
     def cart_pg_add_product
@@ -77,7 +78,7 @@ class CartProductsController < ApplicationController
             cart_product.save
             
         end
-        redirect_to carts_path, sucess: "Added to cart!"
+        redirect_to carts_path, success: "Added to cart!"
     end
 
   
@@ -98,7 +99,6 @@ end
 def total_price_cp
     product = Product.find_by(id: params[:product_id])
     cart = current_user.cart
-    binding.pry
     # @cart_product = cart.cart_products.find_by(product_id: product.id)
     total = cart.quantity * cart.product.sold_at
     return total
