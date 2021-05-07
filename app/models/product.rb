@@ -21,10 +21,10 @@ class Product < ApplicationRecord
     CATEGORY = %w{ Candle Decor Jewelry Food Furniture Soap Other }
 
     
-    def not_referenced_by_any_cart_product
-        unless cart_products.empty?
-            errors.add(:base, "Cart products present")
-            throw :abort
-        end
-    end
+    # def not_referenced_by_any_cart_product
+    #     unless cart_products.empty?
+    #         errors.add(:base, "Cart products present")
+    #         throw :abort
+    #     end
+    # end
 end
