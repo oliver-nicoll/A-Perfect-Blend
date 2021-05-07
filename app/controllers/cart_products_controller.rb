@@ -30,7 +30,7 @@ class CartProductsController < ApplicationController
             end
             @cart_product = @cart.add_product(product)
         if  @cart_product.save
-            redirect_to products_path(@cart_product), , success: "Updated!"
+            redirect_to products_path(@cart_product), success: "Updated!"
         else
             redirect_to products_path, danger: "Try Again"
         end

@@ -1,39 +1,9 @@
 <h1> Show Cart </h1>
-<details class= "shopping-cart">
-        <summary> Shopping Cart </summary>
+
           <div>
             <%= link_to 'Keep Shopping', products_path, class: 'shoping cart button' %>
             </div>
-            <section>
-              <%= render(partial: "cart_products/cart_products", locals: { cart: @cart } ) %>
-            <div class: 'columns'>
-              <div class: 'column'>
-                  <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are you sure?'} %>
-              </div>
-          <h4>
-           <span>Total:</span> <%= number_to_currency(@cart.subtotal_cart) %>
-           </h4>
-          </section>
-  </details>
+          <div>
+              
+          </div>
 
-  <ul>
-  <% @cart.cart_products.each do |cp| %>
-    <li>Item: <%= cp.product.product_name %>/ Price: <%= number_to_currency(cp.product.sold_at) %>/ Quantity: <%= cp.quantity %>/ Total Price: <%= number_to_currency(cp.total_price) %>
-    # See lineItem section below for explanation of cp links
-    <ul>
-      <li>
-        <%= link_to "Add one", cp_add_path(:id => cp), method: :post %>
-        <%= link_to "Reduce one", cp_reduce_path(:id => cp), method: :post %>
-      </li>
-      <li>
-        <%= link_to "Remove item", cp_path(cp), method: :delete %>
-      </li>
-    </ul>
-    #
-  <% end %>
-</ul>
-<h3>Sub total: <%= number_to_currency(@cart.subtotal_cart) %></h3>
-# See Order section below for explanation of new_order_path
-<%= link_to "Proceed to checkout", new_order_path %><br>
-#
-<%= link_to "Empty cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"}

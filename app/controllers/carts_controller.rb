@@ -54,6 +54,14 @@ class CartsController < ApplicationController
     end
 
     def checkout
+        @cart = current_user.cart
+
+        if @cart.nil?
+            redirect_to @cart 
+        else
+            render :show
+        end
+
     end
 
     private 

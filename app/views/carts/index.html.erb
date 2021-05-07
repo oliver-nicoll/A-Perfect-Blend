@@ -7,6 +7,7 @@
            <center> <section>
               <%= render partial: "cart_products/cart_products", locals: { cart: @cart }  %>
             <h4 style=" font-family: copperplate;">  Total: <%= number_to_currency(@total_cart.subtotal_cart) %> </h4>
+              <h4 style=" font-family: copperplate;"> <%= link_to 'Checkout', cart_path(@cart), class: "btn btn-primary" %> </h4>
 
           </section></center>
           </div></center>
